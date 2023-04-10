@@ -5,8 +5,7 @@ import './UserForm.css'
 import * as Yup from 'yup'
 
 const UserForm = () => {
-  const initialUsers = []
-  const [users, setUsers] = useState(initialUsers)
+  const [users, setUsers] = useState([])
   const [formData, setFormData] = useState({
     isim: '',
     email: '',
@@ -41,7 +40,6 @@ const UserForm = () => {
       .catch((err) => {
         setFormError({ ...formError, [e.target.name]: err.errors[0] })
       })
-    console.log(formData)
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
   const handleCheck = (e) => {
@@ -58,21 +56,20 @@ const UserForm = () => {
   const submitHandler = (e) => {
     e.preventDefault()
     axios.post('https://reqres.in/api/users', formData).then((res) => {
-      console.log('post edilen veri>', res.data, 'users>', users)
       setUsers([...users, formData])
-      setFormdata({
-        Adınız: '',
-        Soyadınız: '',
-        Cinsiyet: '',
-        Seçiniz: '',
-        Doğrula: false,
+      setFormData({
+        isim: '',
+        email: '',
+        sifre: '',
+        kosullar: false,
       })
     })
   }
 
   useEffect(() => {
     schema.isValid(formData).then((valid) => setDisabled(!valid))
-  }, [formData])
+    console.log(formData, 'users>', users)
+  }, [formData, users])
 
   return (
     <div>
