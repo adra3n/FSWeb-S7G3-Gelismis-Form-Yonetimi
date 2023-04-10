@@ -8,7 +8,7 @@ context('Form test', () => {
     cy.get('#email')
       .type('deneme@deneme.com')
       .should('have.value', 'deneme@deneme.com')
-    cy.get('#password').type('deneme').should('have.value', 'deneme')
+    cy.get('#sifre').type('deneme').should('have.value', 'deneme')
     cy.get('#kosullar').check()
   })
 })
