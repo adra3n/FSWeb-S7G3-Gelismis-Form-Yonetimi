@@ -1,6 +1,6 @@
-
-import './App.css';
-import UserForm from './UserForm';
+import { useState } from 'react'
+import './App.css'
+import UserForm from './UserForm'
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <UserForm />
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
