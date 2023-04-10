@@ -6,8 +6,7 @@ import * as Yup from 'yup'
 
 const UserForm = () => {
   const initialUsers = []
-
-  const [users, setUsersData] = useState(initialUsers)
+  const [users, setUsers] = useState(initialUsers)
   const [formData, setFormData] = useState({
     isim: '',
     email: '',
@@ -60,7 +59,14 @@ const UserForm = () => {
     e.preventDefault()
     axios.post('https://reqres.in/api/users', formData).then((res) => {
       console.log('post edilen veri>', res.data, 'users>', users)
-      setUsersData([...users, formData])
+      setUsers([...users, formData])
+      setFormdata({
+        Adınız: '',
+        Soyadınız: '',
+        Cinsiyet: '',
+        Seçiniz: '',
+        Doğrula: false,
+      })
     })
   }
 
@@ -128,7 +134,12 @@ const UserForm = () => {
             Kullanim koşulları:{' '}
           </p>
           <Label>
-            <Input type="checkbox" name="kosullar" onChange={handleCheck} />
+            <Input
+              id="kosullar"
+              type="checkbox"
+              name="kosullar"
+              onChange={handleCheck}
+            />
           </Label>
         </FormGroup>
         <Button
